@@ -1,0 +1,16 @@
+{
+  "name": "lab9",
+  "version": "1.0.0",
+  "description": "Bardzo prosta aplikacja: serwer http ze statyczną stroną www  Plik \"./github/workflows/gha_w4.yml\" definiuje: pipeline GitHub Actions  - budowanie obrazu multiarch,  - przesłanie na Dockerhub z nowym tagiem,  - wykorzystanie cache",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "express": "^4.19.2",
+    "moment-timezone": "^0.5.45"
+  }
+}

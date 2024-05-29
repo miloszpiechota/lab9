@@ -55,4 +55,9 @@ jobs:
           cache-to: |
             type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/example:cache  
           tags: ${{ steps.meta.outputs.tags }}
-      
+      -
+        name: Test image for vulnerabilities using Docker Scout
+        uses: docker/scout-action@v1
+        with:
+          image: ghcr.io/${{ secrets.DOCKERHUB_USERNAME }}/example:${{ steps.meta.outputs.tags }}
+          severity-threshold: high
