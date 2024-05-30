@@ -13,6 +13,7 @@ RUN npm install
 
 # Kopiowanie kodu źródłowego serwera
 COPY server.js ./
+COPY src ./src
 
 # Etap 2: Budowanie obrazu końcowego
 FROM node:16-slim
