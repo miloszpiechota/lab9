@@ -56,10 +56,15 @@ jobs:
             type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/example:cache  
           tags: ${{ steps.meta.outputs.tags }}
 
-      - 
-        name: Test image for vulnerabilities using Docker Scout
+        -
+        name: Docker Scout
+        id: docker-scout
+        if: ${{ github.event_name == 'pull_request' }}
         uses: docker/scout-action@v1
         with:
-          image: ${{ vars.DOCKERHUB_USERNAME }}/example:${{ steps.meta.outputs.tags }}
-          dockerhub-user: ${{ secrets.DOCKERHUB_USERNAME }}
-          dockerhub-password: ${{ secrets.DOCKERHUB_TOKEN }}
+          command: compare
+          image: ${{ steps.meta.outputs.tags }}
+          to-env: production
+          ignore-unchanged: true
+          only-severities: critical,high
+          github-token: ${{ secrets.GITHUB_TOKEN }}
